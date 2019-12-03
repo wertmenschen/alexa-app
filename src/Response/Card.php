@@ -77,7 +77,9 @@ class Card implements Arrayable
 
         if ($this->isStandardCard()) {
             $this->addAttributeToArray('text', $cardAsArray);
-            $this->addAttributeToArray('image', $cardAsArray);
+            if($this->image != []) {
+                $this->addAttributeToArray('image', $cardAsArray);
+            }
         }
 
         return $cardAsArray;
