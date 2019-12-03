@@ -3,6 +3,7 @@
 namespace Develpr\AlexaApp\Response;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 
 class Card implements Arrayable
 {
@@ -215,8 +216,8 @@ class Card implements Arrayable
     {
         $requiredKeys = ['smallImageUrl', 'largeImageUrl'];
 
-        if (is_array($image) && array_has($image, $requiredKeys)) {
-            $this->image  = array_only($image, $requiredKeys);
+        if (is_array($image) && Arr::has($image, $requiredKeys)) {
+            $this->image  = Arr::only($image, $requiredKeys);
         } elseif (is_string($image)) {
             $this->image = [
                 'smallImageUrl' => $image,
