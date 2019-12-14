@@ -154,7 +154,7 @@ class Certificate
         $appId = $this->alexaRequest->getAppId();
 
         if (!in_array($appId, $possible)) {
-            throw new InvalidAppIdException("The request's app id does not match the configured app id(s)");
+            throw new InvalidAppIdException("The request's app id (" . $appId . ") does not match the configured app id(s)");
         }
     }
     
