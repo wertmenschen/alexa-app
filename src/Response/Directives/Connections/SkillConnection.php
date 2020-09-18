@@ -12,11 +12,13 @@ class SkillConnection extends Directive
     private $uri;
     private $input;
     private $token;
+    private $onCompletion;
 
-    public function __construct($uri, $input, $token = null)
+    public function __construct($uri, $input, $onCompletion = 'RESUME_SESSION', $token = null)
     {
         $this->uri = $uri;
         $this->input = $input;
+        $this->onCompletion = $onCompletion;
         $this->token = $token ?? Str::random();
     }
 
@@ -40,12 +42,18 @@ class SkillConnection extends Directive
         return $this->token;
     }
 
+    public function getOnCompletion()
+    {
+        return $this->onCompletion;
+    }
+
     public function toArray()
     {
         return [
             'type' => $this->getType(),
             'uri' => $this->getUri(),
             'input' => $this->getInput(),
+            'onCompletion' => $this->getOnCompletion(),
             'token' => $this->getToken(),
         ];
     }
